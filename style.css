@@ -8,49 +8,39 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    /* Garante que o body seja a referência posicional para a imagem */
     position: relative;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
 }
 
-/* Criamos uma camada invisível apenas para a imagem */
 body::before {
     content: "";
     background-image: url('./img/imagem-de-fundo.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-
-    /* Faz a imagem ocupar a tela inteira */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
-    /* AJUSTE A OPACIDADE AQUI (de 0 a 1) */
     opacity: 0.2;
-
-    /* Envia a imagem para trás de todos os textos */
     z-index: -1;
 }
 
-
-a {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-a:hover {
-    opacity: 0.7;
-}
-
-a:active {
-    color: red;
-    opacity: 0.1;
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: black;
+    height: 10vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .nav-label {
@@ -66,40 +56,24 @@ label {
     letter-spacing: 2px;
     color: #fff;
     cursor: pointer;
-}
-
-label {
-    color: #fff;
     animation: brilhoPulse 1.5s infinite alternate;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+a:hover { opacity: 0.7; }
+li { list-style: none; }
+nav ul { display: flex; gap: 20px; }
+
 @keyframes brilhoPulse {
-    0% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff;
-        opacity: 0.8;
-    }
-
-    100% {
-        text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
-        opacity: 1;
-    }
+    0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff; opacity: 0.8; }
+    100% { text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff; opacity: 1; }
 }
 
-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-family: system-ui, -apple-system, helvetica, Arial, Helvetica, sans-serif;
-    background: #23232e;
-    height: 10vh;
-}
-
-li {
-    list-style-type: none;
-}
-
-/* ===== PRA CIMA ESTA A PARTE DE CIMA DO SITE, MENU/NAVEBAR ===== */
-
+/* CONTEUDO */
 .container-pai {
     display: flex;
     justify-content: space-between;
@@ -107,30 +81,14 @@ li {
     gap: 30px;
     margin-top: 8%;
     padding: 0 40px;
-}
-
-.elemento {
     flex: 1;
-    padding: 20px;
-    text-align: center;
-    margin-top: 99px;
+    position: relative;
 }
 
-.punho {
-    width: 350px;
-    height: auto;
-    max-height: 600px;
-    object-fit: contain;
-    flex: 1;
-    opacity: 0.3
-}
+.div-pai, main { flex: 1; }
+.div-filho { margin-left: 20px; margin-top: 24px; min-width: 400px; }
 
-/* ===== PRA CIMA A PARTE QUE ALINHOU OS 3 ELEMENTOS NA MESMA LINHA ===== */
-
-h2 {
-    line-height: 1.6;
-}
-
+h2 { line-height: 1.6; }
 span {
     color: #bb0a0a;
     font-size: 5.5rem;
@@ -142,10 +100,11 @@ span {
 
 .p-consiencia {
     line-height: 1.1;
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-top: 20px;
     font-weight: 300;
     font-family: 'Orbitron', sans-serif;
+    white-space: nowrap;
 }
 
 h1 {
@@ -157,188 +116,93 @@ h1 {
 .p-novembro {
     color: #bb0a0a;
     font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     margin-top: -65px;
     text-align: left;
 }
 
-.div-filho {
-    margin-left: 20px;
-    margin-top: 24px;
-}
-
-.div-pai,
 main {
-    flex: 1;
-}
-
-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 38%;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
     border: 2px solid #bb0a0a;
     border-radius: 6px;
-    font-weight: 600;
-    margin-top: 47px;
+    padding: 25px;
+    height: auto;
 }
 
 .p-elemento {
     color: #0e0d13;
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-weight: 600;
 }
 
-/* ======= PARTE FINAL DA PAGINA ====== */
+.punho {
+    display: block;
+    width: 160px;
+    height: auto;
+    opacity: 0.3;
+    object-fit: contain;
+}
 
+/* FOOTER */
 footer {
+    width: 100%;
     background-color: #000;
     color: #fff;
     height: 60px;
     display: flex;
-
+    justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
-
-footer {
-    color: #fff;
     animation: brilhoPulse 3.5s infinite alternate;
 }
+footer p { text-align: center; width: 100%; font-size: 0.9rem; }
 
-@keyframes brilhoPulse {
-    0% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff;
-        opacity: 0.8;
+/* ===== RESPONSIVO ===== */
+
+@media (max-width: 1024px) {
+    span { font-size: 4rem; }
+    .p-consiencia { font-size: 2.8rem; }
+    h1 { font-size: 12rem; }
+    main { width: 45%; }
+}
+
+@media (max-width: 768px) {
+    .container-pai {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+        padding: 20px;
     }
+    .div-filho { min-width: auto; margin-left: 0; text-align: center; }
+    .p-consiencia { white-space: normal; font-size: 2.5rem; }
+    h1 { font-size: 8rem; }
+    .p-novembro { text-align: center; margin-top: -20px; font-size: 1.8rem; }
 
-    100% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
-        opacity: 1;
+    main {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 100%;
+        margin-top: 20px;
     }
 }
 
-/* ===== PARTE PARA CORRIGIR CODIGOS A CIMA ===== */
-
-nav {
-    margin: 0 !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    position: absolute !important;
-    background: black !important;
+@media (max-width: 480px) {
+    nav { height: 70px; justify-content: space-between; padding: 0 15px; }
+    label { font-size: 16px; }
+    nav ul { gap: 10px; }
+    span { font-size: 2.2rem; }
+    .p-consiencia { font-size: 1.8rem; }
+    h1 { font-size: 6rem; }
+    .punho { width: 120px; }
 }
-
-main {
-    display: flex !important;
-    align-items: flex-start;
-}
-
-main,
-p {
-    text-align: justify !important;
-    font-size: 1.1rem !important;
-    line-height: 1.7 !important;
-    width: 100% !important;
-    padding-right: 20px !important;
-}
-
-
-.p-consiencia {
-    font-size: 3.5rem !important;
-    font-weight: 300 !important;
-    font-family: 'Orbitron', sans-serif !important;
-    line-height: 1.1 !important;
-    margin-top: 20px !important;
-    white-space: nowrap !important;
-}
-
-.div-filho {
-    min-width: 400px !important;
-}
-
-.div-filho p:last-child {
-    color: #bb0a0a !important;
-    font-size: 3rem !important;
-    font-weight: 600 !important;
-    text-align: left !important;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background-color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.container-pai {
-    flex: 1;
-}
-
-footer {
-    width: 100% !important;
-    background-color: #000 !important;
-    color: #fff !important;
-    height: 60px !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-footer p {
-    text-align: center !important;
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* TEXTO NO MEIO DA DIREITA + PUNHO EMBAIXO */
-.container-pai{
-  position: relative !important;
-}
-
-main{
-  position: absolute !important;
-  top: 50% !important;
-  right: 40px !important;
-  transform: translateY(-50%) !important;
-  margin-top: 0 !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 25px !important;
-  width: 38% !important;
-}
-
-.punho{
-  width: 180px !important;
-  flex: none !important;
-}
-
-/* CORRIGE A BORDA ESTICADA */
-main{
-  height: auto !important;
-  padding: 25px !important;
-  justify-content: flex-start !important;
-}
-
-main p.elemento{
-  margin-top: 0 !important;
-  padding: 0 !important;
-  height: auto !important;
-}
-
-.punho{
-  display: block !important;
-  width: 160px !important;
-  height: auto !important;
-}
-
